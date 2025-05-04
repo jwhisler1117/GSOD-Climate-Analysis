@@ -1,4 +1,4 @@
-# 🌍 GSOD-Climate-Analysis
+GSOC Climate-Analysis
 
 This project explores historical climate trends using **NOAA’s Global Summary of the Day (GSOD)** dataset and **Apache Spark** for scalable data processing.
 
@@ -54,4 +54,6 @@ To run in Colab or a new environment:
 # Download station metadata
 !mkdir -p data
 !wget https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv -O data/isd-history.csv
+
+# GSOD-Climate-Analysis
 
