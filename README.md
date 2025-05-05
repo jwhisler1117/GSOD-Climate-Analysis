@@ -19,11 +19,11 @@ This project explores historical climate trends using **NOAA’s Global Summary 
 Notebook: [`GSOD Data DL and Parquet.ipynb`](notebooks/GSOD%20Data%20DL%20and%20Parquet.ipynb)
 
 1. **Downloads GSOD CSVs** from 1970 to 2023 (~382,000 files, ~32.7 GB total).
-2. **Parses with a defined schema** for reliable typing.
+2. **Parses with a defined schema** 
 3. **Adds derived fields**:  
    - `year` (from `DATE`)  
    - `decade` (for decade-based analysis)
-4. **Enriches data** using `isd-history.csv` (country, state, elevation).
+4. **Enriches data** using NOAA Stations Metadata `isd-history.csv` (country, state, elevation).
 5. **Writes to Parquet**, partitioned by `year` for performance.
 
 ---
