@@ -28,6 +28,33 @@ Notebook: [`GSOD Data DL and Parquet.ipynb`](notebooks/GSOD%20Data%20DL%20and%20
 
 ---
 
+
+## 🔧 Data Cleaning
+
+To ensure the quality of the dataset, we applied basic data cleaning techniques before analysis:
+
+```python
+from pyspark.sql.functions import col, regexp_replace
+
+# 1. Drop rows with missing essential fields
+essential_cols = ["TEMP", "LATITUDE", "LONGITUDE"]
+df_clean = df.dropna(subset=essential_cols)
+
+# 2. Remove invalid or unrealistic values
+df_clean = df_clean.filter((col("TEMP") > -1750) & (col("TEMP") < 1750)) \
+                   .filter((col("SLP") < 1100) & (col("SLP") > 800)) \
+                   .filter(~col("PRCP").isin(["99.99", "999.9", "99.9", "999.0"]))
+
+# 3. Remove duplicate observations
+df_clean = df_clean.dropDuplicates(["STATION", "DATE"])
+
+# 4. Clean special flags in MAX, MIN, and PRCP
+df_clean = df_clean.withColumn("MAX", regexp_replace(col("MAX"), "[*]", "").cast("double"))
+df_clean = df_clean.withColumn("MIN", regexp_replace(col("MIN"), "[*]", "").cast("double"))
+df_clean = df_clean.withColumn("PRCP", regexp_replace(col("PRCP"), "[A-Z]", "").cast("double"))
+
+---
+
 ##  Data Exploration
 
 Notebook: [`GSOD_Exploration.ipynb`](notebooks/GSOD_Exploration.ipynb)
