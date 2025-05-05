@@ -23,7 +23,7 @@ Notebook: [`GSOD Data DL and Parquet.ipynb`](notebooks/GSOD%20Data%20DL%20and%20
 3. **Adds derived fields**:  
    - `year` (from `DATE`)  
    - `decade` (for decade-based analysis)
-4. **Enriches data** using `isd-history.csv` (country, state, lat/lon, elevation).
+4. **Enriches data** using `isd-history.csv` (country, state, elevation).
 5. **Writes to Parquet**, partitioned by `year` for performance.
 
 ---
@@ -39,7 +39,7 @@ Includes:
 - Temperature trends by year and decade
 - Avg temperature by country
 - Map of weather station locations (1970 vs 2023)
-- Precipitation and wind patterns (optional)
+
 
 ---
 
@@ -49,7 +49,7 @@ To run in Colab or a new environment:
 
 ```python
 # Install core dependencies
-!pip install pyspark findspark seaborn folium matplotlib --quiet
+!pip install pyspark matplotlib --quiet
 
 # Download station metadata
 !mkdir -p data
