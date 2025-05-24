@@ -57,18 +57,6 @@ Key insights include:
 
 ---
 
-## 🚀 Setup Instructions
-
-To run in Colab or a local environment:
-
-```python
-# Install core dependencies
-!pip install pyspark matplotlib --quiet
-
-# Download station metadata
-!mkdir -p data
-!wget https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv -O data/isd-history.csv
-<<<<<<< HEAD
 =======
 
 ## 📊 Milestone 3: Modeling & Evaluation
@@ -85,6 +73,18 @@ We trained a machine learning model to predict monthly average temperature based
 - **Testing RMSE:** 4.38
 
 See the full notebook here: [`notebooks/GSOD_Modeling.ipynb`](notebooks/GSOD_Modeling.ipynb)
+
+## 🚀 Setup Instructions
+
+To run in Colab or a local environment:
+
+```python
+# Install core dependencies
+!pip install pyspark matplotlib --quiet
+
+# Download station metadata
+!mkdir -p data
+!wget https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv -O data/isd-history.csv
 
 # GSOD-Climate-Analysis
 
