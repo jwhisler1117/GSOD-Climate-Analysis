@@ -68,3 +68,25 @@ To run in Colab or a local environment:
 # Download station metadata
 !mkdir -p data
 !wget https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv -O data/isd-history.csv
+<<<<<<< HEAD
+=======
+
+## 📊 Milestone 3: Modeling & Evaluation
+
+### Summary
+We trained a machine learning model to predict monthly average temperature based on:
+- Geographic features (latitude, longitude, elevation)
+- Time features (year, month)
+- Atmospheric conditions (precipitation, sea-level pressure, wind speed)
+
+### Model
+- **Model Type:** Gradient-Boosted Tree (GBTRegressor)
+- **Training RMSE:** 4.37
+- **Testing RMSE:** 4.38
+
+See the full notebook here: [`notebooks/GSOD_Modeling.ipynb`](notebooks/GSOD_Modeling.ipynb)
+
+# GSOD-Climate-Analysis
+
+# Test push to verify saved GitHub token
+>>>>>>> b1d3eff (Test commit to verify token storage)
