@@ -1,194 +1,118 @@
-🌍 GSOD-Climate-Analysis
-This project explores historical climate trends using NOAA’s Global Summary of the Day (GSOD) dataset and Apache Spark for scalable, distributed data processing. It includes data collection, preprocessing, exploration, and machine learning modeling to predict climate patterns.
+# 🌍 GSOD-Climate-Analysis
 
-📦 Data Sources
-Daily Weather Observations (1970–2023)
-Source: NOAA GSOD Archive
+This project explores historical climate trends using NOAA’s **Global Summary of the Day (GSOD)** dataset and **Apache Spark** for scalable, distributed data processing. It includes data collection, cleaning, exploration, and machine learning modeling to predict temperature trends.
 
-Station Metadata (location, country, elevation)
-Source: isd-history.csv
+---
 
-⚙ Preprocessing Overview
-Notebook: notebooks/GSOD Data DL and Parquet.ipynb
+## 📦 Data Sources
+
+- **Daily Weather Observations (1970–2023)**  
+  [NOAA GSOD Archive](https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/)
+
+- **Station Metadata** (location, country, elevation)  
+  [ISD History CSV](https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv)
+
+---
+
+## ⚙ Preprocessing Overview
+
+Notebook: [`notebooks/GSOD Data DL and Parquet.ipynb`](notebooks/GSOD%20Data%20DL%20and%20Parquet.ipynb)
 
 Steps:
 
-Downloads raw GSOD CSVs (1970–2023) — over 380,000 files (~32.7 GB).
+- Downloads 380,000+ raw GSOD CSV files (32+ GB)
+- Parses with a defined schema for consistency
+- Adds derived columns: `year`, `month`, `decade`
+- Joins with station metadata for spatial enrichment
+- Saves cleaned output as partitioned Parquet files
 
-Parses with a defined schema for consistency.
+---
 
-Derives new fields:
+## 🧹 Data Cleaning & 📊 Exploration
 
-year, month, decade
+Notebook: [`notebooks/GSOD_Exploration.ipynb`](notebooks/GSOD_Exploration.ipynb)
 
-Joins with station metadata for enriched spatial attributes.
+### Cleaning Steps:
 
-Writes cleaned output to partitioned Parquet format.
+- Dropped rows with missing or placeholder values (`TEMP`, `PRCP`, etc.)
+- Filtered out unrealistic entries (e.g., `TEMP < -1750`)
+- Removed special characters and cleaned numeric fields
+- Deduplicated records by `STATION` and `DATE`
 
-🧹📊 Data Cleaing and Exploration
-Notebook: notebooks/GSOD_Exploration.ipynb
+### Exploration Highlights:
 
-Cleaning steps:
+- Global temperature trends (yearly and decadal)
+- Seasonal and geographic variation
+- Missing data patterns
+- Interactive weather station maps
 
-Dropped rows with missing or unrealistic values (e.g., TEMP, PRCP)
+---
 
-Removed placeholder values (99.99, 999.9, etc.)
+## 📈 Milestone 3: Modeling & Evaluation
 
-📊 Data Exploration
-Notebook: notebooks/GSOD_Exploration.ipynb
+Notebook: [`notebooks/GSOD_Modeling.ipynb`](notebooks/GSOD_Modeling.ipynb)
 
-Highlights:
+### ✅ Objective
 
-Yearly and decadal trends in global temperature
-
-Station coverage across decades
-
-Missing data analysis
-
-Visualizations of rainfall, pressure, and wind
-
-Interactive maps of weather stations
-
-📈 Milestone 3: Modeling & Evaluation
-Notebook: notebooks/GSOD_Modeling.ipynb
-
-✅ Objective
-To predict monthly average temperature using geographic, atmospheric, and temporal features.
-
-✅ Features Used
-Location: LATITUDE, LONGITUDE, ELEVATION
-
-Time: year, month
-
-Weather: PRCP (precipitation), SLP (sea-level pressure), WDSP (wind speed)
-
-✅ Model Details
-Algorithm: Gradient-Boosted Tree Regressor (PySpark MLlib)
-
-Train RMSE: ~4.24
-
-Test RMSE (2011–2020): ~4.41
-
-Target Variable: AVG_TEMP
-
-Month	Actual Avg Temp (°F)	Predicted Avg Temp (°F)
-Jan	39.28	39.22
-Jul	71.68	70.77
-Dec	42.00	41.99
-
-✅ Evaluation
-Model fits well (low RMSE).
-
-Minimal overfitting — training and test scores are close.
-
-Model captures seasonal trends but slightly underestimates summer highs.
-
-✅ Next Steps
-Try RandomForestRegressor for interpretability.
-
-Add lagged features to improve sequential predictions.
-
-Train regional or country-specific models.
-
-Perform residual analysis to detect systematic errors.
-
-=======
-This project explores historical climate trends using NOAA’s Global Summary of the Day (GSOD) dataset and Apache Spark for scalable data processing.
-
-📦 Data Sources
-Daily Weather Observations
-NOAA GSOD Archive
-
-Station Metadata (location, country, elevation)
-isd-history.csv
-
-⚙ Preprocessing Overview
-Notebook: GSOD Data DL and Parquet.ipynb
-
-Downloads raw GSOD CSVs (1970–2023).
-
-Parses data with defined schema.
-
-Adds derived fields: year, decade.
-
-Joins with station metadata (isd-history.csv) for enriched spatial information.
-
-Writes data to partitioned Parquet format for efficient querying.
-
-🧹 Data Cleaning
-Notebook: GSOD_Exploration.ipynb
-
-Cleaning steps included:
-
-Dropping rows with missing or placeholder values (TEMP, LATITUDE, PRCP)
-
-Filtering out unrealistic values
-
-Removing special characters (e.g. * in MAX, MIN)
-
-Casting string-encoded numbers to proper numeric types
-
-Deduplication on STATION and DATE
-
-📊 Data Exploration
-We examined:
-
-Missing data distribution
-
-Long-term temperature trends
-
-Station location evolution
-
-Global averages per year and decade
-
-Rainfall and pressure patterns
-
-📈 Milestone 3: Modeling & Evaluation
-Notebook: GSOD_Modeling.ipynb
-
-✅ Model Goal
 To predict monthly average temperature using:
 
-📍 Location: LATITUDE, LONGITUDE, ELEVATION
+- **📍 Location**: `LATITUDE`, `LONGITUDE`, `ELEVATION`  
+- **📅 Time**: `year`, `month`  
+- **🌦️ Weather**: `PRCP`, `SLP`, `WDSP`
 
-📅 Time: year, month
+---
 
-🌦️ Weather: PRCP, SLP, WDSP
+### ✅ Preprocessing Summary
 
-✅ Preprocessing (Required by Milestone)
-Data filtered by quality (e.g. invalid TEMP or PRCP values removed)
+- Cleaned weather data and filtered stations with at least 45 years of data
+- Built feature vectors using PySpark’s `VectorAssembler`
+- Trained on data from 1970–2009  
+- Tested on data from 2011–2020
 
-Feature selection and scaling were handled via Spark VectorAssembler
+---
 
-Month was expanded into name for visualization, no advanced encoding needed
+### ✅ Model Details
 
-✅ Model Details
-Model Type: Gradient-Boosted Tree Regressor (Spark MLlib)
+- **Algorithm**: Gradient-Boosted Tree Regressor (Spark MLlib)
+- **Training RMSE**: ~4.24
+- **Testing RMSE**: ~4.41
 
-Training RMSE: ~4.24
+| Month | Actual Temp (°F) | Predicted Temp (°F) |
+|-------|------------------|---------------------|
+| Jan   | 39.28            | 39.22              |
+| Jul   | 71.68            | 70.77              |
+| Dec   | 42.00            | 41.99              |
 
-Test RMSE (2011–2020): ~4.41
+---
 
-Target: AVG_TEMP by month
+### ✅ Evaluation
 
-Month	Actual Temp (°F)	Predicted Temp (°F)
-Jan	39.28	39.22
-Jul	71.68	70.77
-Dec	42.00	41.99
+- 🔹 RMSE shows low error and good generalization
+- 🔹 Model captures seasonal trends
+- 🔹 Slight underestimation of summer highs
 
-✅ Evaluation: Fitting Graph Position
-Our model fits moderately well — low error, but not overfitting.
+---
 
-It generalizes well from training to unseen data.
+### 🔮 Next Steps
 
-Visual inspection showed the model is able to capture seasonality but tends to slightly underestimate summer highs.
+- Try `RandomForestRegressor` for easier interpretation
+- Add **lagged features** for monthly dependencies
+- Train **regional models** for better accuracy
+- Use residual analysis to identify outliers
 
-✅ Next Steps / Future Models
-🧠 Try RandomForestRegressor for interpretability
+---
 
-🕸️ Add lagged features to capture month-to-month dynamics
+## 📁 Notebooks
 
-🗺️ Train per-country or per-region models
+- 📄 `GSOD Data DL and Parquet.ipynb` – Downloads and prepares the data  
+- 📄 `GSOD_Exploration.ipynb` – Cleans and visualizes the dataset  
+- 📄 `GSOD_Modeling.ipynb` – Machine learning pipeline and evaluation  
 
-📉 Use residual analysis to identify months with worst error
+---
 
+## 🚀 Setup
+
+To run locally or in Jupyter:
+
+```bash
+pip install pyspark matplotlib
