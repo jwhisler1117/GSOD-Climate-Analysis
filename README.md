@@ -48,58 +48,67 @@ Notebook: [`notebooks/GSOD_Exploration.ipynb`](notebooks/GSOD_Exploration.ipynb)
 
 ---
 
-## 📈 Milestone 3: Modeling & Evaluation
+##  Modeling & Evaluation
 
 Notebook: [`notebooks/GSOD_Modeling.ipynb`](notebooks/GSOD_Modeling.ipynb)
 
 ### ✅ Objective
 
-To predict monthly average temperature using:
+To predict the average monthly temperature from the 2011-2020 decade based on data from 1970-2010 using these features:
 
-- **📍 Location**: `LATITUDE`, `LONGITUDE`, `ELEVATION`  
-- **📅 Time**: `year`, `month`  
-- **🌦️ Weather**: `PRCP`, `SLP`, `WDSP`
+- **Location**: `LATITUDE`, `LONGITUDE`, `ELEVATION`  
+- **Time**: `year`, `month`  
+- **Weather**: `PRCP`, `SLP`, `WDSP`
 
 ---
 
 ### ✅ Preprocessing Summary
 
-- Cleaned weather data and filtered stations with at least 45 years of data
-- Built feature vectors using PySpark’s `VectorAssembler`
-- Trained on data from 1970–2009  
-- Tested on data from 2011–2020
+- Missing values removed for key features: TEMP, PRCP, SLP, WDSP, LATITUDE, LONGITUDE, ELEVATION
+- Invalid placeholder values like 99.99, 9999 filtered out
+- Features assembled using PySpark’s VectorAssembler:
+  - LATITUDE, LONGITUDE, ELEVATION
+  - year, month (temporal)
+  - PRCP, SLP, WDSP (atmospheric)
 
 ---
 
-### ✅ Model Details
+### Model Details
 
 - **Algorithm**: Gradient-Boosted Tree Regressor (Spark MLlib)
-- **Training RMSE**: ~4.24
-- **Testing RMSE**: ~4.41
+- **Target**: Monthly Average Temperature (AVG_TEMP)
+- **Training Data:** 1970-2009
+- **Test Data:** 2011-2020
 
-| Month | Actual Temp (°F) | Predicted Temp (°F) |
-|-------|------------------|---------------------|
-| Jan   | 39.28            | 39.22              |
-| Jul   | 71.68            | 70.77              |
-| Dec   | 42.00            | 41.99              |
+### Model Evaluation
+
+**Metric	Value**
+  Train RMSE	4.24°F
+  Test RMSE	  4.41°F
+
+**Month	Actual Temp (°F)	Predicted Temp (°F)**
+  Jan	  39.28            	39.22
+  Jul	  71.68	            70.77
+  Dec	  42.00	            41.99
+---
+
+### Evaluation
+
+**Fitting Position:** Fairly Strong (low RMSE difference between train and test suggesting minimal overfitting)
+
+**Future Plans:**
+  Add lagged features to capture temporal dependencies
+  Train per-country or per-region models
+  Try RandomForestRegressor for improved interpretability
+  Perform residual analysis to target months with higher error
 
 ---
 
-### ✅ Evaluation
+### Conclusion
 
-- 🔹 RMSE shows low error and good generalization
-- 🔹 Model captures seasonal trends
-- 🔹 Slight underestimation of summer highs
-
----
-
-### 🔮 Next Steps
-
-- Try `RandomForestRegressor` for easier interpretation
-- Add **lagged features** for monthly dependencies
-- Train **regional models** for better accuracy
-- Use residual analysis to identify outliers
-
+-The GBT model effectively predicts monthly temperature using only station, time, and weather data.
+-It generalizes well from historical to modern climate data.
+-Future improvements include regional modeling and time-series enhancements like lag features
 ---
 
 ## 📁 Notebooks
