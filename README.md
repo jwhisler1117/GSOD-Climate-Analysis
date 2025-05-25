@@ -126,8 +126,16 @@ This project successfully demonstrates that:
 
 ## Setup
 
-To run locally or in Jupyter:
+To run this project locally or in a Jupyter environment:
+
+Install the required libraries:
 
 ```bash
-pip install pyspark matplotlib
+pip install pyspark matplotlib folium
+
+NOAA CSV Data:
+
+mkdir -p data
+wget https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv -O data/isd-history.csv
+
 
