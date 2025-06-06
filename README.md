@@ -2,6 +2,10 @@
 
 This project explores historical climate trends using NOAA’s **Global Summary of the Day (GSOD)** dataset and **Apache Spark** for scalable, distributed data processing. It includes data collection, cleaning, exploration, and machine learning modeling to predict temperature trends.
 
+## 📄 Full Report
+View the full project write-up with figures and detailed discussion:  
+[Download PDF Report](report/GSOD_Climate_Analysis_Report.pdf)
+
 ---
 
 ## Data Sources
