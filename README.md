@@ -2,7 +2,7 @@
 
 This project explores historical climate trends using NOAA’s **Global Summary of the Day (GSOD)** dataset and **Apache Spark** for scalable, distributed data processing. It includes data collection, cleaning, exploration, and machine learning modeling to predict temperature trends.
 
-## 📄 Full Report
+## Full Written Report
 View the full project write-up with figures and detailed discussion:  
 [Download the Full PDF Report](https://github.com/jwhisler1117/GSOD-Climate-Analysis/raw/Milestone3/Written%20Report.pdf)
 
@@ -81,7 +81,7 @@ To predict the average monthly temperature from the 2011–2020 decade based on 
 - **Algorithm**: Gradient-Boosted Tree Regressor (Spark MLlib)
 - **Target**: Monthly average temperature (`AVG_TEMP`)
 
-### 📈 Performance Metrics
+###  Performance Metrics
 
 - **Train RMSE**: 3.71°F  
 - **Test RMSE**: 3.82°F  
@@ -91,7 +91,7 @@ To predict the average monthly temperature from the 2011–2020 decade based on 
 The model demonstrated strong generalization with low error and accurately captured seasonal temperature patterns. Most predictions were within a few degrees of the actual values.
 ---
 
-### 📅 Monthly Predictions: 2011–2020
+###  Monthly Predictions: 2011–2020
 
 | Month | Actual Avg Temp (°F) | Predicted Avg Temp (°F) |
 |-------|----------------------|--------------------------|
