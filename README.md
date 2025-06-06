@@ -4,7 +4,8 @@ This project explores historical climate trends using NOAA’s **Global Summary 
 
 ## 📄 Full Report
 View the full project write-up with figures and detailed discussion:  
-[Download PDF Report](report/GSOD_Climate_Analysis_Report.pdf)
+[Download the Full PDF Report](https://github.com/jwhisler1117/GSOD-Climate-Analysis/raw/Milestone3/Written%20Report.pdf)
+
 
 ---
 
