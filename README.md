@@ -21,7 +21,7 @@ View the full project write-up with figures and detailed discussion:
 
 ## Preprocessing Overview
 
-Notebook:[notebooks/GSOD_Exploration.ipynb]
+Notebook:[[notebooks/GSOD_Exploration.ipynb]](https://github.com/jwhisler1117/GSOD-Climate-Analysis/blob/Main/notebooks/GSOD%20Data%20DL%20and%20Parquet.ipynb)
 
 
 Steps:
