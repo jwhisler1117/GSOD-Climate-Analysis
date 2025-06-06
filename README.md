@@ -21,7 +21,7 @@ View the full project write-up with figures and detailed discussion:
 
 ## Preprocessing Overview
 
-Notebook: GSOD Data DL and Parquet.ipynb
+Notebook: [GSOD Data DL and Parquet.ipynb](https://github.com/jwhisler1117/GSOD-Climate-Analysis/blob/Main/GSOD%20Data%20DL%20and%20Parquet.ipynb)
 
 Steps:
 
@@ -35,7 +35,7 @@ Steps:
 
 ## Data Cleaning & Exploration
 
-Notebook: [`notebooks/GSOD_Exploration.ipynb`](notebooks/GSOD_Exploration.ipynb)
+Notebook: [`notebooks/GSOD_Exploration.ipynb`](notebooks/GSOD_Exploration.ipynb)](https://github.com/jwhisler1117/GSOD-Climate-Analysis/blob/Main/GSOD_Exploration.ipynb)
 
 ### Cleaning Steps
 
@@ -54,7 +54,7 @@ Notebook: [`notebooks/GSOD_Exploration.ipynb`](notebooks/GSOD_Exploration.ipynb)
 
 ## Modeling 
 
-Notebook: [`notebooks/GSOD_Modeling.ipynb`](notebooks/GSOD_Modeling.ipynb)
+Notebook: [`notebooks/GSOD_Modeling.ipynb`](notebooks/GSOD_Modeling.ipynb)](https://github.com/jwhisler1117/GSOD-Climate-Analysis/blob/Main/GSOD_Modeling.ipynb)
 
 ### Objective
 
