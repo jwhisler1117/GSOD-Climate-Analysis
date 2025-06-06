@@ -21,7 +21,7 @@ View the full project write-up with figures and detailed discussion:
 
 ## Preprocessing Overview
 
-Notebook: [`notebooks/GSOD Data DL and Parquet.ipynb`](notebooks/GSOD%20Data%20DL%20and%20Parquet.ipynb)
+Notebook: GSOD Data DL and Parquet.ipynb
 
 Steps:
 
