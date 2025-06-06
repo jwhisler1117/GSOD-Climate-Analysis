@@ -79,18 +79,35 @@ To predict the average monthly temperature from the 2011–2020 decade based on 
 
 - **Algorithm**: Gradient-Boosted Tree Regressor (Spark MLlib)
 - **Target**: Monthly average temperature (`AVG_TEMP`)
-- **Training RMSE**: ~4.24°F  
-- **Testing RMSE**: ~4.41°F
 
-#### Sample Predictions
+### 📈 Performance Metrics
+
+- **Train RMSE**: 3.71°F  
+- **Test RMSE**: 3.82°F  
+- **Test R²**: 0.97  
+- **Test MAE**: 2.76°F  
+
+The model demonstrated strong generalization with low error and accurately captured seasonal temperature patterns. Most predictions were within a few degrees of the actual values.
+---
+
+### 📅 Monthly Predictions: 2011–2020
 
 | Month | Actual Avg Temp (°F) | Predicted Avg Temp (°F) |
 |-------|----------------------|--------------------------|
-| Jan   | 39.28                | 39.22                   |
-| Jul   | 71.68                | 70.77                   |
-| Dec   | 42.00                | 41.99                   |
+| Jan   | 39.49                | 39.45                   |
+| Feb   | 41.95                | 41.81                   |
+| Mar   | 48.63                | 48.22                   |
+| Apr   | 56.31                | 55.82                   |
+| May   | 63.16                | 62.55                   |
+| Jun   | 68.67                | 68.45                   |
+| Jul   | 71.63                | 71.11                   |
+| Aug   | 70.89                | 70.51                   |
+| Sep   | 65.57                | 65.31                   |
+| Oct   | 57.61                | 57.45                   |
+| Nov   | 48.85                | 48.76                   |
+| Dec   | 42.27                | 42.19                   |
 
----
+ The model was especially accurate during winter and shoulder seasons, with minor underestimations in peak summer months.
 
 ### Evaluation
 
@@ -102,11 +119,12 @@ To predict the average monthly temperature from the 2011–2020 decade based on 
 
 ### Next Steps
 
-- Try `RandomForestRegressor` for interpretability
-- Add **lagged features** to capture temporal patterns
-- Train **region-specific models**
-- Conduct **residual analysis** to detect outliers
-
+- Explore **regional or climate zone-specific models** to assess local accuracy and variability
+- Investigate **why the model slightly underestimates summer peaks**, possibly by refining features or adding interaction terms
+- Experiment with **true future forecasting** by creating models that simulate or estimate inputs (e.g., precipitation) beyond 2020
+- Try alternative models like `RandomForestRegressor` to compare performance and feature importance
+- Incorporate **time-based features** or lags to improve temporal awareness
+- Continue refining the data pipeline for even more scalable or real-time applications
 ---
 
 ## Conclusion
